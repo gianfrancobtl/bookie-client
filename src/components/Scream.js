@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-// Import withStyles for adding 'general' style to different elements. //
+// Import withStyles for adding global styles. //
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 
 // Needed to format the date to a readable one. //
 import dayjs from 'dayjs';
+// Plugin that formats the code for knowing how much time passed since published. //
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 // MUI Components: pre-stablished css can be used. //
 import Card from '@material-ui/core/Card';
@@ -30,6 +32,7 @@ const styles = {
 
 export class Scream extends Component {
     render() {
+      dayjs.extend(relativeTime);
         const {
             classes,
             scream: {
@@ -59,7 +62,7 @@ export class Scream extends Component {
             {userHandle}
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            {/* {dayjs(createdAt).fromNow()} */}
+            { dayjs(createdAt).fromNow() }
           </Typography>
           <Typography variant="body1">{body}</Typography>
         </CardContent>

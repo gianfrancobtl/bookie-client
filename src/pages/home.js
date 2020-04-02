@@ -10,7 +10,8 @@ import axios from 'axios';
 import Scream from '../components/Scream';
 
 class home extends Component {
-    state = {
+  // State object to be filled with the fetched screams. //  
+  state = {
         screams: null
     }
   componentDidMount() {
@@ -24,6 +25,7 @@ class home extends Component {
     .catch((err) => console.log(err));
   }
   render() {
+    // If scream is fetched, show it, else "loading..." //
     let recentScreamsMarkup = this.state.screams ? (
         this.state.screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
       ) : (
