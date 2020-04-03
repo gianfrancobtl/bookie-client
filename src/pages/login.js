@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 import AppIcon from '../images/book.png';
 import { Link } from 'react-router-dom';
 
-// MUI Stuff
+// MUI Stuff. //
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-// Redux stuff
+
+// Redux stuff. //
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
 
+// Access to everything that is in the global theme. //
 const styles = (theme) => ({
   ...theme
 });
@@ -114,6 +116,7 @@ class login extends Component {
   }
 }
 
+// "component".propTypes: bring all that is required in this component. //
 login.propTypes = {
   classes: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
@@ -121,15 +124,18 @@ login.propTypes = {
   UI: PropTypes.object.isRequired
 };
 
+// Function that takes the global state and returns what is needed.  //
 const mapStateToProps = (state) => ({
   user: state.user,
   UI: state.UI
 });
 
+// Function that takes the global actions and returns what is needed.  //
 const mapActionsToProps = {
   loginUser
 };
 
+//  //
 export default connect(
   mapStateToProps,
   mapActionsToProps
