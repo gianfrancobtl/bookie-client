@@ -1,5 +1,5 @@
 // Functional components needs React to be initialized. //
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // General application CSS Styling file. //
 import './App.css';
@@ -8,7 +8,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // Library that decodes (converts into intelligible language) json web tokens. //
 import jwtDecode from 'jwt-decode';
-// Redux
+// Redux. //
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
@@ -22,12 +22,58 @@ import AuthRoute from './util/AuthRoute';
 // Import of axios for handling with the token. //
 import axios from 'axios';
 // Pages. //
-import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+import home from "./pages/home";
 
 // 1. Theme set for the general design of the project. //
-const theme = createMuiTheme(themeObject);
+const theme = createMuiTheme({
+  palette: {
+      primary: {
+        light: '#33c9dc',
+        main: '#00bcd4',
+        dark: '#008394',
+        contrastText: '#fff'
+      },
+      secondary: {
+        light: '#ff6333',
+        main: '#ff3d00',
+        dark: '#b22a00',
+        contrastText: '#fff'
+      }
+    },
+
+    // the object to be spread
+    spreadThis: {
+       typography: {
+        useNextVariants: true
+      },
+      form: {
+        textAlign: "center"
+      },
+      image: {
+        margin: "10px auto 10px auto"
+      },
+      pageTitle: {
+        margin: "10px auto 10px auto"
+      },
+      textField: {
+        margin: "10px auto 10px auto"
+      },
+      button: {
+        marginTop: 20,
+        position: "relative"
+      },
+      customError: {
+        color: "red",
+        fontSize: "0.8rem",
+        marginTop: 5
+      },
+      progress: {
+        position: "absolute"
+      }
+    }
+});
 
 // //
 const token = localStorage.FBIdToken;
@@ -44,23 +90,25 @@ if (token) {
   }
 }
 
-function App() {
-  return (
+class App extends Component {
+  render() {
+    return (
       <MuiThemeProvider theme={theme}>
         <Provider store={store}>
           <Router>
             <Navbar />
             <div className="container">
               <Switch>
-                <Route path="/" component={home} />
-                <AuthRoute exact path="/login" component={login} authenticated={authenticated}/>
-                <AuthRoute exact path="/signup" component={signup} authenticated={authenticated}/>
+                <Route exact path="/" component={home} />
+                <AuthRoute exact path="/login" component={login} />
+                <AuthRoute exact path="/signup" component={signup} />
               </Switch>
             </div>
           </Router>
         </Provider>
       </MuiThemeProvider>
-  );
+    );
+  }
 }
 
 export default App;

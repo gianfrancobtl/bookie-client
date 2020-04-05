@@ -18,6 +18,7 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated
 });
 
+// User is set as a global object once signed up or logged in. //
 AuthRoute.propTypes = {
   user: PropTypes.object
 };

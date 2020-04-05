@@ -17,7 +17,7 @@ import { loginUser } from '../redux/actions/userActions';
 
 // Access to everything that is in the global theme. //
 const styles = (theme) => ({
-  ...theme
+  ...theme.spreadThis
 });
 
 class login extends Component {
@@ -29,6 +29,8 @@ class login extends Component {
       errors: {}
     };
   }
+  
+  // Get errors and set them locally. //
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({ errors: nextProps.UI.errors });

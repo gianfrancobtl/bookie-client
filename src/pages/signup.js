@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import AppIcon from '../images/icon.png';
+import AppIcon from '../images/book.png';
 import { Link } from 'react-router-dom';
-
 // MUI Stuff
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +15,7 @@ import { signupUser } from '../redux/actions/userActions';
 
 // Access to everything that is in the global theme. //
 const styles = (theme) => ({
-  ...theme
+  ...theme.spreadThis
 });
 
 class signup extends Component {
@@ -58,10 +57,12 @@ class signup extends Component {
     });
   };
   render() {
+    // Variables get from props. //
     const {
       classes,
       UI: { loading }
     } = this.props;
+    // Variables get from local state of the component. //
     const { errors } = this.state;
 
     return (

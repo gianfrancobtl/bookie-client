@@ -50,9 +50,13 @@ import {
       });
   };
   
+  // Logout user. //
   export const logoutUser = () => (dispatch) => {
+    // Removes the Token from the local storage. //
     localStorage.removeItem('FBIdToken');
+    // Delete the Authorization header. //
     delete axios.defaults.headers.common['Authorization'];
+    // Set the user is logged out: deletes the credentiales set up. //
     dispatch({ type: SET_UNAUTHENTICATED });
   };
   
